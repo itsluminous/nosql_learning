@@ -8,7 +8,7 @@ db.createCollection('clicks', {
 
 //load 200 documents into the collection
 for (var i = 1; i <= 200; i++){
-    db.clicks.save({'field' : 'x', 'counter' : i})
+    db.clicks.insertOne({'field' : 'x', 'counter' : i})
 }
 
 //count how many document they are
@@ -16,7 +16,7 @@ db.clicks.count({'counter' : {$lt : 200}})
 
 //load another 100 documents into the collection
 for (var i = 201; i <= 300; i++){
-    db.clicks.save({'field' : 'x', 'counter' : i})
+    db.clicks.insertOne({'field' : 'x', 'counter' : i})
 }
 
 //count how many document they are with counter number less than 200
