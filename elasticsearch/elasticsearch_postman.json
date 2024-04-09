@@ -1,0 +1,177 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Elastic",
+    "dateExported": "2024-04-09T11:12:46.360Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f6170cb6-bd94-480c-87d5-ba8e3326f546",
+            "colId": "bd32cfce-f2da-495e-a530-1718e6609ded",
+            "containerId": "",
+            "name": "Get elastic cluster info",
+            "url": "http://localhost:9200/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-04-09T05:33:40.920Z",
+            "modified": "2024-04-09T09:33:18.783Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "8a246049-1d28-42e8-bae2-23c7523a641f",
+            "colId": "bd32cfce-f2da-495e-a530-1718e6609ded",
+            "containerId": "",
+            "name": "Get all indexes",
+            "url": "http://localhost:9200/_cat/indices",
+            "method": "GET",
+            "sortNum": 15000,
+            "created": "2024-04-09T06:47:47.987Z",
+            "modified": "2024-04-09T09:33:25.376Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "85377c6b-6aae-41ac-8087-aaf34f6f5161",
+            "colId": "bd32cfce-f2da-495e-a530-1718e6609ded",
+            "containerId": "",
+            "name": "Get particular index",
+            "url": "http://localhost:9200/ml-ratings",
+            "method": "GET",
+            "sortNum": 17500,
+            "created": "2024-04-09T06:52:19.932Z",
+            "modified": "2024-04-09T09:33:31.849Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "basic",
+                "basic": {
+                    "username": "elastic",
+                    "password": "search"
+                }
+            },
+            "tests": []
+        },
+        {
+            "_id": "8f473640-07eb-4a66-8c86-32a9c956add5",
+            "colId": "bd32cfce-f2da-495e-a530-1718e6609ded",
+            "containerId": "",
+            "name": "Delete an index",
+            "url": "http://localhost:9200/review",
+            "method": "DELETE",
+            "sortNum": 18750,
+            "created": "2024-04-09T06:57:21.187Z",
+            "modified": "2024-04-09T09:33:47.585Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "4630e51c-3c25-4928-8423-3c013f656202",
+            "colId": "bd32cfce-f2da-495e-a530-1718e6609ded",
+            "containerId": "",
+            "name": "Delete document from index",
+            "url": "http://localhost:9200/review/_doc/1",
+            "method": "DELETE",
+            "sortNum": 19375,
+            "created": "2024-04-09T07:11:25.246Z",
+            "modified": "2024-04-09T09:33:58.178Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c99ec62b-012e-4ad7-8a6a-6d7bf79eb40d",
+            "colId": "bd32cfce-f2da-495e-a530-1718e6609ded",
+            "containerId": "",
+            "name": "Create an index",
+            "url": "http://localhost:9200/ml-tags",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-04-09T05:34:03.026Z",
+            "modified": "2024-04-09T09:34:07.659Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\t\"mappings\" : {\n\t\t\"dynamic\" : false,\n\t\t\"properties\" : {\n\t\t\t\"userId\" : {\"type\": \"long\", \"store\": true},\n\t\t\t\"movieId\" : {\"type\": \"long\", \"store\": true},\n\t\t\t\"title\" : {\"type\" : \"text\", \"store\" : true, \"index\" : true, \"analyzer\" : \"snowball\", \"copy_to\" : \"all\"},\n\t\t\t\"year\" : {\"type\" : \"short\", \"store\" : true},\n\t\t\t\"genres\" : {\"type\" : \"keyword\", \"store\": true, \"copy_to\" : \"all\"},\n\t\t\t\"tag\" : {\"type\" : \"text\", \"store\" : true, \"index\" : true, \"analyzer\" : \"snowball\", \"copy_to\" : \"all\"},\n\t\t\t\"ts\" : {\"type\" : \"date\", \"store\": true, \"format\":\"dd/MM/yyyy HH:mm\"},\n\t\t\t\"all\" : {\"type\" : \"text\", \"index\" : true, \"store\": false, \"analyzer\": \"standard\"}\n\t\t}\n\t},\n\t\"settings\" : {\n\t\t\"number_of_shards\" : 3,\n\t\t\"number_of_replicas\" : 1\n\t}\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f8e60663-23ff-4cdc-b3ed-2c807abc5e0b",
+            "colId": "bd32cfce-f2da-495e-a530-1718e6609ded",
+            "containerId": "",
+            "name": "Create index without schema",
+            "url": "http://localhost:9200/review/_doc/1",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-04-09T06:49:47.081Z",
+            "modified": "2024-04-09T09:34:18.182Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"id\": 0,\n    \"country\": \"Italy\",\n    \"description\": \"Aromas include tropical fruit, broom, brimstone and dried herb. The palate isn't overly expressive, offering unripened apple, citrus and dried sage alongside brisk acidity.\",\n    \"designation\": \"Vulkà Bianco\",\n    \"points\": 87,\n    \"price\": 0.0,\n    \"province\": \"Sicily & Sardinia\",\n    \"region_1\": \"Etna\",\n    \"region_2\": \"\",\n    \"taster_name\": \"Kerin O’Keefe\",\n    \"taster_twitter_handle\": \"@kerinokeefe\",\n    \"title\": \"Nicosia 2013 Vulkà Bianco  (Etna)\",\n    \"variety\": \"White Blend\",\n    \"winery\": \"Nicosia\",\n    \"active\" : true\n  }",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "05a2af5a-bfae-4fd5-bfac-5cccc28e911a",
+            "colId": "bd32cfce-f2da-495e-a530-1718e6609ded",
+            "containerId": "",
+            "name": "Update document in an index",
+            "url": "http://localhost:9200/review/_doc/1",
+            "method": "PUT",
+            "sortNum": 35000,
+            "created": "2024-04-09T07:09:50.162Z",
+            "modified": "2024-04-09T09:34:27.765Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"id\": 0,\n    \"country\": \"Italy\",\n    \"description\": \"Aromas include tropical fruit, broom, brimstone and dried herb. The palate isn't overly expressive, offering unripened apple, citrus and dried sage alongside brisk acidity.\",\n    \"designation\": \"Vulkà Bianco\",\n    \"points\": 87,\n    \"price\": 1.2,\n    \"province\": \"Sicily & Sardinia\",\n    \"region_1\": \"Etna\",\n    \"region_2\": \"\",\n    \"taster_name\": \"Kerin O’Keefe\",\n    \"taster_twitter_handle\": \"@kerinokeefe\",\n    \"title\": \"Nicosia 2013 Vulkà Bianco  (Etna)\",\n    \"variety\": \"White Blend\",\n    \"winery\": \"Nicosia\",\n    \"active\" : true\n  }",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9895df0a-6308-4872-a32e-df189532045d",
+            "colId": "bd32cfce-f2da-495e-a530-1718e6609ded",
+            "containerId": "",
+            "name": "Get particular document that is indexed",
+            "url": "http://localhost:9200/review/_doc/1",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-04-09T07:06:00.865Z",
+            "modified": "2024-04-09T09:34:36.339Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "8220078f-ba52-4090-a480-e0fe4c5db796",
+            "colId": "bd32cfce-f2da-495e-a530-1718e6609ded",
+            "containerId": "",
+            "name": "Get all documents in an index",
+            "url": "http://localhost:9200/review/_search?sort=id",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-04-09T07:07:05.958Z",
+            "modified": "2024-04-09T09:34:44.054Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "sort",
+                    "value": "id",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        }
+    ]
+}
