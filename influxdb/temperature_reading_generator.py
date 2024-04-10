@@ -2,28 +2,34 @@
 
 import random
 import time
-from influxdb import InfluxDBClient
+from influxdb_client import InfluxDBClient, Point, WritePrecision
+from influxdb_client.client.write_api import SYNCHRONOUS
 
 def get_next_reading():
 	BASE_READING = 36.8
 	return BASE_READING + random.random()
 
 
-DBNAME = 'hellodb'
+org = "myorg"
+bucket = "hellodb"
+token = "mShoqCwmjN8x6i4LGWPosl_e8vZztuiHvwM4lu8hs5IsL7KkcAS74fzHsREoUGkqm8f2hoqbKtoOX0W5ZKyveQ=="
 client = None
 
-def generate() :
-	client = InfluxDBClient(host="localhost", port=8086, database=DBNAME) 
-	# In a continous loop, generate random temperature reading and send to influxdb server
-	try :
-		while True:
-			ts_data = "temp_measure reading=%.4f"  % (get_next_reading()) # using the line protocol
-			client.write(ts_data, {'db':DBNAME}, protocol='line') 
-			print("%s" % (ts_data))
-			time.sleep(5)
-	except KeyboardInterrupt as e:
-		client.close()
-		raise e
+def generate():
+    client = InfluxDBClient(url="http://localhost:8086", token=token)
+    write_api = client.write_api(write_options=SYNCHRONOUS)
+
+    try:
+        while True:
+            temperature =  get_next_reading()
+            data_point = Point("temperature").field("reading", temperature)
+            write_api.write(bucket, org, data_point)
+            print(f"Data written successfully : {temperature}")
+            time.sleep(5)
+    except KeyboardInterrupt as e:
+        print("Exiting...")
+        client.close()
+        raise e
 
 # execute the generate function
 generate()

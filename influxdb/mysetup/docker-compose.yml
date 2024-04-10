@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  influxdb:
+    image: influxdb:2.7.5
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2:rw
+    env_file:
+      - ./influx.env
+    networks:
+      - tick_network
+
+  telegraf:
+    image: telegraf:1.30.1
+    container_name: telegraf
+    depends_on:
+      - influxdb
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    env_file:
+      - ./influx.env
+    networks:
+      - tick_network
+
+volumes:
+  influxdb_data:
+    driver: local
+
+networks:
+  tick_network:
+    driver: bridge
