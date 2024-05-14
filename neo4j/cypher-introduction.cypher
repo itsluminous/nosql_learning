@@ -1,5 +1,5 @@
 //create a business unique id for a friend referral system
-CREATE CONSTRAINT ON (p:Person) ASSERT p.id IS UNIQUE;
+CREATE CONSTRAINT FOR (p:Person) REQUIRE p.id IS UNIQUE;
 
 //create nodes
 CREATE (p: Person {id: "di@zetemhas.vg"}) SET p.firstname="Jack", p.lastname="Singleton", p.city="Johannesburg", p.age=36;

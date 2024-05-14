@@ -16,7 +16,7 @@ MATCH (x:Movie {movieId : 122})<-[:TO]-(r)<-[:GAVE]-(u:User)
 WHERE r.rate > 3 
 WITH u as users
 MATCH (users)-[:GAVE]-(r)-[:TO]-(m:Movie)
-WITH m, AVG(r.rate) AS score, , COUNT(r) AS scount
+WITH m, AVG(r.rate) AS score, COUNT(r) AS scount
 ORDER BY score DESC, scount DESC
 RETURN m, score , scount
 LIMIT 10;
@@ -36,4 +36,4 @@ WHERE r.rate >= 3 AND r2.rate >=3 AND r3.rate >= 3 AND u.gender = others.gender 
 WITH m2 AS movie, AVG(r3.rate) AS score, count(r3)  AS ratings
 RETURN movie
 ORDER BY ratings DESC, score DESC
-LIMIT 10
+LIMIT 10;

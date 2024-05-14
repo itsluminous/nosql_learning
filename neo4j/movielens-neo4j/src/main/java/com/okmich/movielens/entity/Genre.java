@@ -6,18 +6,19 @@
 package com.okmich.movielens.entity;
 
 import java.io.Serializable;
-import org.neo4j.ogm.annotation.Id;
-import org.neo4j.ogm.annotation.NodeEntity;
+
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
 
 /**
  *
  * @author michael.enudi
  */
-@NodeEntity
+@Node
 public class Genre implements Serializable {
 
     @Id
-    private Long id;
+    private Long identity;
     private String name;
 
     public Genre() {
@@ -27,14 +28,14 @@ public class Genre implements Serializable {
      * @return the id
      */
     public Long getId() {
-        return id;
+        return identity;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(Long id) {
-        this.id = id;
+        this.identity = id;
     }
 
     /**

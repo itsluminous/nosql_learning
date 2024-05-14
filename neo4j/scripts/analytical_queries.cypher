@@ -1,5 +1,5 @@
 // get the schema in your neo4j instance
-call db.schema();
+call db.schema.visualization
 
 //use the apoc help function to find functions or procedures
 call apoc.help('path');

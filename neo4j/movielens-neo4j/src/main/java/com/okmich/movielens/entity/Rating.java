@@ -7,15 +7,15 @@ package com.okmich.movielens.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
-import org.neo4j.ogm.annotation.Id;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
+import org.springframework.data.neo4j.core.schema.Relationship;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
 
 /**
  *
  * @author michael.enudi
  */
-@NodeEntity
+@Node
 public class Rating implements Serializable {
 
     @Id
@@ -25,7 +25,7 @@ public class Rating implements Serializable {
     private float rating;
     private String comment;
     private long timestamp;
-    @Relationship(type = "TO", direction = Relationship.OUTGOING)
+    @Relationship(type = "TO", direction = Relationship.Direction.OUTGOING)
     private Movie movie;
 
     public Rating() {

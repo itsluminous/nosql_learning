@@ -8,20 +8,25 @@ package com.okmich.movielens.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
+
+import org.springframework.data.neo4j.core.schema.Relationship;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 
 /**
  *
  * @author michael.enudi
  */
-@NodeEntity
+@Node
+@EnableNeo4jRepositories
 public class Movie implements Serializable {
 
+    @Id
     private Long id;
     private Long movieId;
     private String title;
-    @Relationship(type = "IS_A", direction = Relationship.OUTGOING)
+    @Relationship(type = "IS_A", direction = Relationship.Direction.OUTGOING)
     private List<Genre> genres;
 
     public Movie() {

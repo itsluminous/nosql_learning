@@ -37,7 +37,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public Page<User> getUsers(@RequestParam(name = "pageCount", required = false, defaultValue = "0") int pageCount,
             @RequestParam(name = "pageSize", required = false, defaultValue = "25") int pageSize) {
-        Pageable pgbl = new PageRequest(pageCount, pageSize);
+        Pageable pgbl = PageRequest.of(pageCount, pageSize);
         return userRepo.findAll(pgbl);
     }
 

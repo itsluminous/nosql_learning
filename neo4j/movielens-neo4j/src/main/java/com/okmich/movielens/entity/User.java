@@ -6,16 +6,18 @@
 package com.okmich.movielens.entity;
 
 import java.io.Serializable;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Property;
+import org.springframework.data.neo4j.core.schema.Property;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
 
 /**
  *
  * @author michael.enudi
  */
-@NodeEntity
+@Node
 public class User implements Serializable {
 
+    @Id
     private Long id;
     @Property
     private Long userId;

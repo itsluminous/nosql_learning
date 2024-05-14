@@ -47,14 +47,14 @@ public class MovieController {
     @RequestMapping(method = RequestMethod.GET)
     public Page<Movie> getMovies(@RequestParam(name = "pageCount", required = false, defaultValue = "0") int pageCount,
             @RequestParam(name = "pageSize", required = false, defaultValue = "25") int pageSize) {
-        Pageable pgbl = new PageRequest(pageCount, pageSize);
+        Pageable pgbl = PageRequest.of(pageCount, pageSize);
         return movieRepo.findAll(pgbl);
     }
 
     @RequestMapping(value = "/genres", method = RequestMethod.GET)
     public Page<Genre> getGenres(@RequestParam(name = "pageCount", required = false, defaultValue = "0") int pageCount,
             @RequestParam(name = "pageSize", required = false, defaultValue = "25") int pageSize) {
-        Pageable pgbl = new PageRequest(pageCount, pageSize, new Sort(Sort.Direction.ASC, "name"));
+        Pageable pgbl = PageRequest.of(pageCount, pageSize, Sort.by(Sort.Direction.ASC,  "name"));
         return genreRepo.findAll(pgbl);
     }
 
